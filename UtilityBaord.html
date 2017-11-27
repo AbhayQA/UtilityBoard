@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Utility Board</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#currency").click(function(){
+        $.get("https://api.fixer.io/latest", function(data, status){
+			$("#currency").text("1 EUR = "+data.rates.INR);
+			setTimeout(function() { $("#currency").text("Get EUR/INR rates"); }, 3000);
+        });
+    });
+	$("#code").click(function(){
+        $.get("https://restcountries.eu/rest/v2/alpha/ind", function(data, status){
+			$("#code").text("Calling code : "+data.callingCodes[0]);
+			setTimeout(function() { $("#code").text("Get India calling code"); }, 3000);
+        });
+    });
+	$("#population").click(function(){
+        $.get("https://restcountries.eu/rest/v2/alpha/ind", function(data, status){
+			$("#population").text("Population : "+data.population);
+			setTimeout(function() { $("#population").text("Get India Population"); }, 3000);
+        });
+    });
+	$("#area").click(function(){
+        $.get("https://restcountries.eu/rest/v2/alpha/ind", function(data, status){
+			$("#area").text("Area : "+data.area);
+			setTimeout(function() { $("#area").text("Get India Area"); }, 3000);
+        });
+    });
+});
+</script>
+<style>
+.welcome { 
+   	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);   
+}
+.btn {
+	width: 100%;
+}
+</style>
+</head>
+<body>
+<table class="table welcome">
+	<tr>
+		<th><button id="currency" class="btn btn-primary btn-lg">Get EUR/INR rates</button></th>
+		<th><button id="code" class="btn btn-primary btn-lg">Get India calling code</button></th>
+	</tr>
+	<tr>
+		<th><button id="population" class="btn btn-primary btn-lg">Get India Population</button></th>
+		<th><button id="area" class="btn btn-primary btn-lg">Get India Area</button></th>
+	</tr>
+</table>
+</body>
+</html>
